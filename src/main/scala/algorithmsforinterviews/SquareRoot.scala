@@ -12,12 +12,16 @@ package algorithmsforinterviews
 object SquareRoot {
 
   def sqrt(x: Double): Double = {
-    def closeEnough(a: Double, b: Double) = Math.abs(a - b) < .001
+    def closeEnough(g: Double) = {
+      Math.abs(x/g - g) < .001
+    }
 
-    def betterGuess(g: Double) = (g + x/g) / 2
+    def betterGuess(g: Double) = {
+      (g + x/g) / 2
+    }
 
     def test(g: Double): Double = {
-      if (closeEnough(x/g, g)) g else test(betterGuess(g))
+      if (closeEnough(g)) g else test(betterGuess(g))
     }
 
     test(1)
